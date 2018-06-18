@@ -1,36 +1,45 @@
 <template>
-  <div>
-    <h1>{{ titulo }}</h1>
+  <div class="corpo">
 
-<ul>
-  <li v-for ="foto of fotos">
-    <img v-bind:src="foto.url" :alt="foto.titulo"></li>
-  
-</ul>
+    <meu-menu :rotas="routes"/>
 
-   
+    <transition name="pagina">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return{
-      titulo: 'Alurapic',
-      fotos: [
-        {
-        url: 'https://images-na.ssl-images-amazon.com/images/I/51Ya2eTZVPL.jpg',
-        titulo: 'livro'
-      },
-      {
-        url: 'https://images-na.ssl-images-amazon.com/images/I/51Ya2eTZVPL.jpg',
-        titulo: 'livrao'
-      }]
+  import {routes} from './routes';
+  import Menu from './components/shared/menu/Menu.vue';
+  export default {
+
+    components:{
+      'meu-menu': Menu
+    },
+
+    data(){
+      return {
+        routes
+      }
+
     }
   }
-}
 </script>
 
 <style lang="scss">
 
+.corpo{
+  font-family:Arial, Helvetica, sans-serif;
+  width: 96%;
+  margin: 0 auto;
+}
+
+.pagina-enter, .pagina-leave-active {
+      opacity: 0;
+  }
+
+  .pagina-enter-active, .pagina-leave-active {
+      transition: opacity .4s;
+  }
 </style>
