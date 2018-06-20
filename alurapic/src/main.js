@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
+import { Layout } from 'bootstrap-vue/es/components';
+
 
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
@@ -8,8 +10,10 @@ import { routes } from './routes';
 /**import da directiva para ser registrada na global Vue */
 import './directives/Transform';
 
+
 Vue.use(VueResource);
 Vue.use(VueRouter);
+Vue.use(Layout);
 
 /*cria uma instancia de router passando as rotas como parametro*/
 const router = new VueRouter({ 

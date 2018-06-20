@@ -7,7 +7,8 @@
     <ul class="lista-fotos">
       <li class="lista-fotos-item" v-for ="foto of fotosComFiltro" :key="foto">
         <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva class="imagem-responsiva" v-bind:src="foto.url" :alt="foto.titulo" v-meu-transform />
+          <imagem-responsiva class="imagem-responsiva" v-bind:src="foto.url" :alt="foto.titulo" 
+          v-meu-transform:scale.animate="1.2" />
           <meu-botao tipo="button" 
           rotulo="REMOVER" 
           @botaoAtivado="remove(foto)"
@@ -25,12 +26,21 @@
     import Painel from '../shared/painel/Painel.vue';
     import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
     import Botao from '../shared/botao/Botao.vue';
+/**import da directiva Transform */
+    import transform from '../../directives/Transform';
+    import bModal from 'bootstrap-vue/es/components/modal/modal';
+
     export default {
 
     components:{
         'meu-painel': Painel,
         'imagem-responsiva':ImagemResponsiva,
-        'meu-botao': Botao
+        'meu-botao': Botao,
+        'b-modal': bModal
+    },
+
+    directives: {
+        'meu-transform': transform
     },
 
     data() {
