@@ -55,8 +55,9 @@
 
     methods: {
         remove(foto){
-            //this.$http.delete('http://localhost:3000/v1/fotos/' + foto._id);
-            this.$http.delete(`v1/fotos/${ foto._id }`)
+            // a chave do objeto é o parâmetro usando no endereço do recurso 
+            this.resource
+            .delete( { id: foto._id } )
             .then( () => {
                 //busca o indice da foto
                 let indice = this.fotos.indexOf( foto );
@@ -85,8 +86,12 @@
     },
 
     created(){
-        //http://localhost:3000/ esta em main.js
-        this.$http.get( 'v1/fotos' )
+        //utilizando recurso resource ao inves do http.
+        //{/id} - corresponde ao parametro criado no metodo remove
+        this.resource = this.$resource( 'v1/fotos{/id}' );
+        //no resource utiliza-se o query correspondente ao metodo get do http.
+        this.resource
+        .query()
         .then( res => res.json() )
         .then( fotos => this.fotos = fotos, err => console.log( err ) );
     }
