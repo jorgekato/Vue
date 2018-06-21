@@ -2,6 +2,7 @@
   <div>
     <h1 class="centralizado">{{ titulo }}</h1>
 
+    <p v-show="mensagem" class="centralizado">{{ mensagem}}</p>
     <input type="search" class="filtro" v-on:input="filtro= $event.target.value" placeholder="Filtre por parte do título " />
 
     <ul class="lista-fotos">
@@ -47,13 +48,25 @@
         return{
         titulo: 'Alurapic',
         fotos: [],
-        filtro: ''
+        filtro: '',
+        mensagem: ''
         }
     },
 
     methods: {
         remove(foto){
-            alert('Removido a foto ' + foto.titulo);
+            //this.$http.delete('http://localhost:3000/v1/fotos/' + foto._id);
+            this.$http.delete(`v1/fotos/${ foto._id }`)
+            .then( () => {
+                //busca o indice da foto
+                let indice = this.fotos.indexOf( foto );
+                //remove programaticamento o item do array
+                this.fotos.splice( indice, 1 );
+                this.mensagem = 'Foto excluida com sucesso!';
+                }, err => {
+                console.log( err ); 
+                this.mensagem = 'Não foi possivel remover a foto'}
+                );
         }
     },
 
@@ -72,8 +85,8 @@
     },
 
     created(){
-        
-        this.$http.get( 'http://localhost:3000/v1/fotos' )
+        //http://localhost:3000/ esta em main.js
+        this.$http.get( 'v1/fotos' )
         .then( res => res.json() )
         .then( fotos => this.fotos = fotos, err => console.log( err ) );
     }
