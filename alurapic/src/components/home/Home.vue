@@ -30,6 +30,7 @@
 /**import da directiva Transform */
     import transform from '../../directives/Transform';
     import bModal from 'bootstrap-vue/es/components/modal/modal';
+    import fotoService from '../../domain/foto/FotoService';
 
     export default {
 
@@ -55,9 +56,9 @@
 
     methods: {
         remove(foto){
-            // a chave do objeto é o parâmetro usando no endereço do recurso 
-            this.resource
-            .delete( { id: foto._id } )
+
+            this.service
+            .apaga( foto._id )
             .then( () => {
                 //busca o indice da foto
                 let indice = this.fotos.indexOf( foto );
@@ -86,14 +87,13 @@
     },
 
     created(){
-        //utilizando recurso resource ao inves do http.
-        //{/id} - corresponde ao parametro criado no metodo remove
-        this.resource = this.$resource( 'v1/fotos{/id}' );
-        //no resource utiliza-se o query correspondente ao metodo get do http.
-        this.resource
-        .query()
-        .then( res => res.json() )
+        // criando uma instância do nosso serviço que depende de $resource
+        this.service = new fotoService( this.$resource );
+
+        this.service
+        .lista()
         .then( fotos => this.fotos = fotos, err => console.log( err ) );
+
     }
     }
 </script>
