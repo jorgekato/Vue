@@ -10,6 +10,10 @@
         <meu-painel :titulo="foto.titulo">
           <imagem-responsiva class="imagem-responsiva" v-bind:src="foto.url" :alt="foto.titulo" 
           v-meu-transform:scale.animate="1.2" />
+          <router-link :to="{name: 'altera', params: {id: foto._id}}">
+              <meu-botao tipo="button"  rotulo="ALTERAR" />
+          </router-link>
+
           <meu-botao tipo="button" 
           rotulo="REMOVER" 
           @botaoAtivado="remove(foto)"
@@ -91,9 +95,9 @@
         this.service = new fotoService( this.$resource );
 
         this.service
-        .lista()
-        .then( fotos => this.fotos = fotos, err => console.log( err ) );
-
+            .lista()
+            .then( fotos => this.fotos = fotos, 
+                    err => this.mensagem = err.message);
     }
     }
 </script>

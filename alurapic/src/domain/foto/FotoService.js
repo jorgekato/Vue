@@ -6,7 +6,14 @@ export default class FotoService {
 
     cadastra( foto ) {
 
-        return this._resourceFoto.save(foto);
+        if(foto._id){
+            return this._resourceFoto
+                .update( { id: foto._id }, foto); //$http.put
+        }else{
+            return this._resourceFoto
+                .save(foto);
+        }
+        
     }
 
     apaga( id ) {
@@ -18,7 +25,18 @@ export default class FotoService {
 
         return this._resourceFoto
         .query()  //realiza a busca
-        .then( res => res.json() );  //converte para formato json
+        .then( res => res.json(),
+                err => {
+                    console.log(err);
+                    throw new Error('Não foi possível obter as fotos.');
+                }
+    );  //converte para formato json
+    }
+
+    busca( id ) {
+        return this._resourceFoto
+        .get( { id } )
+        .then( res => res.json() );
     }
 
 }

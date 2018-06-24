@@ -20,7 +20,8 @@
 
     data(){
       return {
-        routes
+        //so exibe a rota em que o menu for true
+        routes: routes.filter( route => route.menu )
       }
 
     }

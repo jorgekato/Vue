@@ -3,7 +3,8 @@ import Home from './components/home/Home.vue';
 
 /*Config de rotas*/
 export const routes = [
-    {path: '', component: Home, titulo: 'Home'},/* localhost:3000/#/ */
-    {path: '/cadastro', component: Cadastro, titulo: 'Cadastro'}/* localhost:3000/#/cadastro */
-
+    {path: '', name:'home', component: Home, titulo: 'Home', menu:true},/* localhost:3000/#/ */
+    {path: '/cadastro', name:'cadastro', component: Cadastro, titulo: 'Cadastro', menu:true},/* localhost:3000/#/cadastro */
+    {path: '/cadastro/:id', name:'altera', component: Cadastro, titulo: 'Cadastro', menu:false},
+    {path: '*', component: Home, menu:false}
 ];
