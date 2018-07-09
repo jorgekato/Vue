@@ -1,4 +1,6 @@
-import Cadastro from './components/cadastro/Cadastro.vue';
+/**utilizando lazy loading com 'const' */
+const Cadastro = () => System.import('./components/cadastro/Cadastro.vue').then(m => m.default);
+
 import Home from './components/home/Home.vue';
 
 /*Config de rotas*/

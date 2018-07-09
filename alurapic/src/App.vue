@@ -30,7 +30,7 @@
 
 <style lang="scss">
 @import './assets/styles/variables';
-@import './assets/styles/bootstrap';
+
 
 .corpo{
   font-family:Arial, Helvetica, sans-serif;

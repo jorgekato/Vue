@@ -33,7 +33,6 @@
     import Botao from '../shared/botao/Botao.vue';
 /**import da directiva Transform */
     import transform from '../../directives/Transform';
-    import bModal from 'bootstrap-vue/es/components/modal/modal';
     import fotoService from '../../domain/foto/FotoService';
 
     export default {
@@ -42,7 +41,7 @@
         'meu-painel': Painel,
         'imagem-responsiva':ImagemResponsiva,
         'meu-botao': Botao,
-        'b-modal': bModal
+        
     },
 
     directives: {
@@ -70,8 +69,7 @@
                 this.fotos.splice( indice, 1 );
                 this.mensagem = 'Foto excluida com sucesso!';
                 }, err => {
-                console.log( err ); 
-                this.mensagem = 'Não foi possivel remover a foto'}
+                    this.mensagem = err.message;}
                 );
         }
     },

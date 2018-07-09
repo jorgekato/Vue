@@ -18,7 +18,12 @@ export default class FotoService {
 
     apaga( id ) {
         
-        return this._resourceFoto.delete( { id: id } );
+        return this._resourceFoto
+            .delete( { id: id } )
+            .then( null, err => {
+                console.log(err);
+                throw new Error('Não foi possível remover a foto');
+            });
     }
 
     lista() {
