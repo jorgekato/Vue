@@ -1,12 +1,12 @@
 <template>
   <div>
     <h1 class="centralizado">{{ titulo }}</h1>
-
+<img src="/static/teste.png">
     <p v-show="mensagem" class="centralizado">{{ mensagem}}</p>
     <input type="search" class="filtro" v-on:input="filtro= $event.target.value" placeholder="Filtre por parte do título " />
 
     <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for ="foto of fotosComFiltro" :key="foto">
+      <li class="lista-fotos-item" v-for ="foto of fotosComFiltro" :key="foto._id">
         <meu-painel :titulo="foto.titulo">
           <imagem-responsiva class="imagem-responsiva" v-bind:src="foto.url" :alt="foto.titulo" 
           v-meu-transform:scale.animate="1.2" />

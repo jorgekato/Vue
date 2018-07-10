@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
+    "jquery": "^3.1.1",
     "vee-validate": "^2.1.0-beta.2",
     "vue": "^2.5.11",
     "vue-resource": "^1.0.3",
@@ -30,8 +31,8 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.25.0",
     "file-loader": "^1.1.4",
-    "node-sass": "^4.5.3",
-    "sass-loader": "^6.0.6",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue-loader": "^13.0.5",
